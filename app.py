@@ -131,20 +131,10 @@ def delete(id):
 
 
 
-# Seu código existente ...
-
-
-# Filtro personalizado para converter string em datetime.date , porque dava dandio o erro da data ta como string
-@app.template_filter('letra_data')
-def data(letra_data):
-    return datetime.strptime(letra_data, '%Y-%m-%d').date()
 
 
 
 
-@app.template_filter('letra_tempo')
-def string_to_time(letra_tempo):
-    return datetime.strptime(letra_tempo, '%H:%M').time()
 
 
 
