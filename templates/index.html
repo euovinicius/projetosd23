@@ -30,7 +30,7 @@
             
             {% for post in posts %}
             
-            <div class="tarefa {% if post.concluida %}concluida{% endif %}">
+            <div class="tarefa {% if post.concluida %}concluida{% endif %}" style="display: none;">
                 <h1>{{ post.title }}</h1> 
                 <div class="concluir">
                     {% if not post.concluida %}
