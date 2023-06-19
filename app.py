@@ -34,7 +34,7 @@ def index():
     view_posts = [dict(post) for post in posts]
     agora = datetime.now()
     for post in view_posts:
-        post['vencido'] = 'green'
+        post['vencido'] = 'green'                
         try: 
             data = datetime.strptime(f"{post['data']} {post['horario']}" , '%Y-%m-%d %H:%M')
             print(data, agora)
@@ -130,13 +130,17 @@ def delete(id):
 
 
 
-
-
-
-
-
-
-
+@app.route('/concluir-tarefa/<int:post_id>', methods=['POST'])
+def concluir_tarefa(post_id):
+    conn = get_db_connection()
+    post = conn.execute('SELECT concluida FROM posts WHERE id = ?', (post_id,)).fetchone()
+    if post is not None:
+        concluida = post['concluida']
+        nova_conclusao = 0 if concluida else 1
+        conn.execute('UPDATE posts SET concluida = ? WHERE id = ?', (nova_conclusao, post_id))
+        conn.commit()
+    conn.close()
+    return redirect(url_for('index'))
 
 # inicia servico
 if __name__ == "__main__":

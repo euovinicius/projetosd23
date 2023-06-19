@@ -6,7 +6,7 @@ CREATE TABLE posts (
     title TEXT NOT NULL,
     content TEXT NOT NULL,
     horario TIMESTAMP,
-    data TIMESTAMP
-    
+    data TIMESTAMP ,
+    concluida INTEGER DEFAULT 0
 
 );
